@@ -66,7 +66,7 @@ toggleTheme = () => {
 
               <Route component={NotFound} />
             </Switch>
-            {ctx.data.theme}
+            
             <Footer />
           </Router>
           

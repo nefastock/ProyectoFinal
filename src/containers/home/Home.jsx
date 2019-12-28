@@ -1,54 +1,45 @@
-import React, { Componentm, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, Row, Col,Card, CardText, CardTitle, Button, CardBody, CardImg, CardSubtitle  } from 'reactstrap';
+import { getAllActionsAsyncCreator } from '../../store/modules/post/get-all.actions';
 
-import { Container, Row, Col, Table } from 'reactstrap';
 
+const dataMapper = d => d ? d : [];
 
-import { findAllPost } from '../../services/post.services';
 
 const Home = () => {
 
-    const [posts, setPosts] = useState([]);
+    const posts = useSelector(store => store.post, []);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllActionsAsyncCreator());
+    }, []);
 
     
 
-    useEffect(() => {
-        findAllPost().then((response) => {
-            const posts = response.data.data;
-            setPosts(posts);
-        }).catch((err) => {
-            debugger;
-        })
-       return () => {
-            // alert('Chao private');
-       } 
-    }, []);
-
     return (
-        <Container className="private-home">
-            Home 
+        <Container className="home">
+            <h1>Actividades Cajón Maipo</h1>  
+            <br/>
+            
             <Row>
-                <Col>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Titulo</th>
-                                <th>Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {posts.map((post) => (
-                            <tr key={post.id}>
-                                <td>{post.id}</td>
-                                <td>{post.title}</td>
-                                <td>{post.description}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </Table>
-                </Col>
-                </Row>
+                {dataMapper(posts.getAll.data.data).map(post => (
+                    <Col sm="6">
+                        <Card>
+                            <CardImg top width="20%" src={post.image_url} alt="Card image cap" />
+                            <CardBody>
+                            <CardTitle><strong>{post.title}</strong></CardTitle>
+                            <CardSubtitle></CardSubtitle>
+                            <CardText>{post.description}</CardText>
+                            <Button>Ver Detalle</Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+            
         </Container>
     );
 };

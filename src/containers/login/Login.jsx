@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Input, Button, Form, FormGroup, Label, Card, Container, Col, Row, CardHeader, CardBody, Badge  } from 'reactstrap';
+import { Input, Button, Form, FormGroup, Label, Card, Container, Col, Row, CardHeader, CardBody, Alert  } from 'reactstrap';
 import useInput from '../../hooks/userInput';
 import { loginActionsAsyncCreator as loginAction } from '../../store/modules/auth/login.actions';
 
+const dataMapper = d => d ? d : [];
+
 const Login = (props) => {
     const dispatch = useDispatch();
-    const jwt = useSelector(store => store.auth.login.data);
+    const user = useSelector(store => store.auth.login);
     const email = useInput('', 'email');
     const password = useInput('', 'password');
 
     const buttonIsDisabled = () => password.value === '' || email.value === '';
 
     useEffect(() => {
-        if (jwt !== null) {
+        if (user.data !== null) {
             props.history.push('dashboard/users')
         }
-    }, [jwt])
+    }, [user.data])
 
     return (
         <Container className="mt-4">
@@ -40,9 +42,13 @@ const Login = (props) => {
                                     disabled={buttonIsDisabled()}
                                     onClick={() => dispatch(loginAction(email.value, password.value))}
                                 >Iniciar Sesión</Button>
-                                
-                                
                                 <Button className="ml-2" href="/register" color="primary">Registrar</Button>
+                                <br/>
+                                {user.loading ? <div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div> : ''}
+                                {user.error !== null &&  user.success !== ''? <Alert className="mt-3" color="danger">Error login</Alert> : ''}
+                                
+                                
+                                
                             </Form></CardBody>
                     </Card>
                 </Col>

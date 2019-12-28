@@ -4,11 +4,11 @@ import {
     POST_GET_ALL_ERROR,
 } from './const';
 
-import { getAllService } from '../../../services/POST.services';
+import { findAllPost } from '../../../services/post.services';
 
 const startActionCreator = () => ({
     type: POST_GET_ALL_START,
-    payload: null,
+    payload: [],
 })
 
 const successActionCreator = (data) => ({
@@ -21,13 +21,14 @@ const errorActionCreator = (errorMessage) => ({
     payload: errorMessage,
 })
 
-export const getAllActionsAsyncCreator = () => {
+export const getAllActionsAsyncCreator = () => {    
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
-        getAllService(jwt).then(data => {
+        findAllPost(jwt).then(data => {
             dispatch(successActionCreator(data.data));
         }).catch(err => {
+            debugger
             dispatch(errorActionCreator(err));
         })
     }

@@ -17,6 +17,7 @@ const getAllReducer = (prevState = initialState, action) => {
         case POST_GET_ALL_START:
             return {
                 ...prevState,
+                data: [],
                 loading: true,
             };
 

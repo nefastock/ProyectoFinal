@@ -25,8 +25,6 @@ const UserCreate = () => {
     const password = useFormInput('', 'password');
     const passwordConfirm = useFormInput('', 'password');
     
-    const [visible, setvisible] = useState(true);
-
     const inputs = [
         makeInput(name, 'Nombre usuario'),
         makeInput(email, 'Email'),
