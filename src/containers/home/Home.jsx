@@ -8,7 +8,15 @@ import { getAllActionsAsyncCreator } from '../../store/modules/post/get-all.acti
 const dataMapper = d => d ? d : [];
 
 
-const Home = () => {
+const Home = (props) => {
+
+    const user = useSelector(store => store.auth.login);
+    useEffect(() => {
+        if (user.data !== null) {
+            props.history.push('/private')
+        }
+    }, [user.data])
+
 
     const posts = useSelector(store => store.post, []);
     const dispatch = useDispatch();
@@ -26,14 +34,15 @@ const Home = () => {
             
             <Row>
                 {dataMapper(posts.getAll.data.data).map(post => (
-                    <Col sm="6">
+                    <Col sm="6" key={post.id}>
                         <Card>
                             <CardImg top width="20%" src={post.image_url} alt="Card image cap" />
                             <CardBody>
                             <CardTitle><strong>{post.title}</strong></CardTitle>
                             <CardSubtitle></CardSubtitle>
                             <CardText>{post.description}</CardText>
-                            <Button>Ver Detalle</Button>
+                            
+                            <Link to={`/post/${post.id}`}>Ver Detalle</Link>
                             </CardBody>
                         </Card>
                     </Col>

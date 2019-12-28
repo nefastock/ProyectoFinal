@@ -53,17 +53,18 @@ toggleTheme = () => {
           <Router>
             <Header />            
             <Switch>
-              <Route path={routes.home} exact component={Home} />
-              <Route path={routes.postDetail} exact component={PostDetail} />
+              <Route path={routes.home} exact component={Home} />              
               <Route path={routes.login} exact component={Login} />
-              <PrivateRoute path={routes.privateHome} component={PrivateHome} />
-              <PrivateRoute path="/dashboard" exact component={Header} />
-              <PrivateRoute path="/dashboard/users" exact component={UserListView} />
-              <PrivateRoute path="/dashboard/users/view/:id" exact component={UserDetailView} />
-              <PrivateRoute path="/post:id" exact component={PostDetail} />
-              <Route path={routes.register} exact component={UserCreate} />
-                     
+              <Route path={routes.register} exact component={UserCreate} /> 
 
+              <PrivateRoute path={routes.privateHome} component={PrivateHome} />
+              <PrivateRoute path={routes.postDetail} exact component={PostDetail} />
+              <PrivateHome path={routes.privateHome} exact component={PrivateHome} /> 
+              
+              <PrivateRoute path="/users" exact component={UserListView} />
+              <PrivateRoute path="/users:id" exact component={UserDetailView} />
+              
+              
               <Route component={NotFound} />
             </Switch>
             

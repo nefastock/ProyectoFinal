@@ -4,7 +4,6 @@ import { Input, Button, Form, FormGroup, Label, Card, Container, Col, Row, CardH
 import useInput from '../../hooks/userInput';
 import { loginActionsAsyncCreator as loginAction } from '../../store/modules/auth/login.actions';
 
-const dataMapper = d => d ? d : [];
 
 const Login = (props) => {
     const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (user.data !== null) {
-            props.history.push('dashboard/users')
+            props.history.push('/')
         }
     }, [user.data])
 
@@ -44,7 +43,7 @@ const Login = (props) => {
                                 >Iniciar Sesión</Button>
                                 <Button className="ml-2" href="/register" color="primary">Registrar</Button>
                                 <br/>
-                                {user.loading ? <div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div> : ''}
+                                {user.loading ? <div className="spinner-border" role="status"><span className="sr-only">Loading...</span></div> : ''}
                                 {user.error !== null &&  user.success !== ''? <Alert className="mt-3" color="danger">Error login</Alert> : ''}
                                 
                                 

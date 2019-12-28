@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import './Header.css'; 
 import Context from '../../Context';
 import {
@@ -9,20 +10,34 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
+import { logoutActionCreator } from '../../store/modules/auth/login.actions';
 
 import { getName } from '../../utils/getEnv';
 
 const Header = (props) => {
 
   const ctx = useContext(Context);
+
   
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+
+  const logout = () => {
+    debugger
+    dispatch(logoutActionCreator());
+    props.history.push('/login')
+  }
 
   const toggle = () => {
     console.log(ctx);
+    debugger
     setIsOpen(!isOpen);
     console.log(ctx);
   }
@@ -39,13 +54,23 @@ const Header = (props) => {
           <Nav className="mr-auto" navbar>
             <NavItem>
                 <NavLink tag={RRNavLink} exact to="/" activeClassName="active">Home</NavLink>
+            </NavItem>            
+            <NavItem>            
+              <NavLink tag={RRNavLink} exact to="/register" activeClassName="active">Register</NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} exact to="/login" activeClassName="active">Login</NavLink>            
             </NavItem>
-            <NavItem>            
-              <NavLink tag={RRNavLink} exact to="/register" activeClassName="active">Register</NavLink>
-            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>      
+                  <DropdownItem onClick={logout}>
+                    Cerrar Sesión
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
           </Nav>
          
           <Button outline onClick={ctx.toggleTheme}> Change Theme </Button>
