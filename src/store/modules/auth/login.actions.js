@@ -7,9 +7,9 @@ import {
 
 import { loginService } from '../../../services/login.services';
 
-export const logoutActionCreator = () => ({
+export const logoutActionCreator = (data) => ({
     type: AUTH_LOGOUT,
-    payload: null,
+    payload: data,
 })
 
 const startActionCreator = () => ({
@@ -36,5 +36,11 @@ export const loginActionsAsyncCreator = (email, password) => {
         }).catch(err => {
             dispatch(errorActionCreator(err));
         })
+    }
+}
+
+export const logoutActionsAsyncCreator = () => {
+    return (dispatch) => {
+        dispatch(logoutActionCreator());
     }
 }

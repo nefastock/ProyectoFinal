@@ -43,10 +43,7 @@ toggleTheme = () => {
 }
   
   render () {
-    const ctx = {
-        data: this.state,
-        toggleTheme: this.toggleTheme,
-    };
+    
     return (
       <Provider store={store}>
         <Context.Provider value={this.state}>

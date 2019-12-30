@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Table  } from 'reactstrap';
+import { Container, Table, Button  } from 'reactstrap';
 import { getAllActionsAsyncCreator } from '../../store/modules/post/get-all.actions';
 
 
@@ -25,7 +24,9 @@ const Home = (props) => {
         dispatch(getAllActionsAsyncCreator());
     }, []);
 
-    
+    const handlerToggleModify = (id) => {
+        
+    }
 
     return (
         <Container className="home">
@@ -37,7 +38,8 @@ const Home = (props) => {
                         <tr>
                             <th>ID</th>
                             <th>Actividad</th>
-                            <th>Descripción</th>                            
+                            <th>Descripción</th>      
+                            <th>Acción</th>                           
                         </tr>
                 </thead>
                 <tbody>
@@ -46,7 +48,7 @@ const Home = (props) => {
                         <td>{post.id}</td>
                         <td>{post.title}</td>
                         <td>{post.description}</td>
-                        
+                        <td><Button onClick={handlerToggleModify(post.id)}>Editar</Button></td>                        
                     </tr>
                 ))}
                 </tbody>

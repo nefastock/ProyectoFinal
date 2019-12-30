@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button, Form, FormGroup, Label, Card, Container, Col, Row, CardHeader, CardBody, Alert  } from 'reactstrap';
 import useInput from '../../hooks/userInput';
@@ -11,13 +11,27 @@ const Login = (props) => {
     const email = useInput('', 'email');
     const password = useInput('', 'password');
 
+    const [showAlert, setShowAlert] = useState(false);
+
     const buttonIsDisabled = () => password.value === '' || email.value === '';
 
-    useEffect(() => {
+    useEffect(() => {       
+
         if (user.data !== null) {
+            
             props.history.push('/')
         }
     }, [user.data])
+
+    const handlerLogin = () => {
+        debugger
+        user.error?setShowAlert(true):setShowAlert(false);
+        dispatch(loginAction(email.value, password.value));        
+
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+    }
 
     return (
         <Container className="mt-4">
@@ -39,12 +53,12 @@ const Login = (props) => {
                                 </FormGroup>
                                 <Button
                                     disabled={buttonIsDisabled()}
-                                    onClick={() => dispatch(loginAction(email.value, password.value))}
+                                    onClick={handlerLogin}
                                 >Iniciar Sesión</Button>
                                 <Button className="ml-2" href="/register" color="primary">Registrar</Button>
                                 <br/>
                                 {user.loading ? <div className="spinner-border" role="status"><span className="sr-only">Loading...</span></div> : ''}
-                                {user.error !== null &&  user.success !== ''? <Alert className="mt-3" color="danger">Error login</Alert> : ''}
+                                <Alert className={showAlert? 'visible mt-3':'oculto'} color="danger"  >Error login</Alert> 
                                 
                                 
                                 

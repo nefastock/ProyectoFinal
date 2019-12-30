@@ -11,6 +11,7 @@ const initialState = {
     success: null,
     errorMessage: '',
     loading: false,
+    jwt: true,
 };
 
 const loginReducer = (prevState = initialState, action) => {
@@ -29,6 +30,7 @@ const loginReducer = (prevState = initialState, action) => {
                 loading: false,
                 error: false,
                 success: true,
+                jwt: true
             };
 
         case AUTH_LOGIN_ERROR:
@@ -41,7 +43,10 @@ const loginReducer = (prevState = initialState, action) => {
             };
 
         case AUTH_LOGOUT:
-            localStorage.clear();
+
+            debugger
+            localStorage.removeItem('jwt');
+
             return {
                 ...prevState,
                 data: null,
@@ -49,6 +54,7 @@ const loginReducer = (prevState = initialState, action) => {
                 error: false,
                 success: false,
                 errorMessage: '',
+                jwt: false
             };
 
         default:

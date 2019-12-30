@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import {  useSelector,useDispatch } from 'react-redux';
 import './Header.css'; 
 import Context from '../../Context';
 import {
@@ -17,22 +17,27 @@ import {
   DropdownItem
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
-import { logoutActionCreator } from '../../store/modules/auth/login.actions';
+import { logoutActionsAsyncCreator as logoutAction } from '../../store/modules/auth/login.actions';
+
+
 
 import { getName } from '../../utils/getEnv';
 
 const Header = (props) => {
 
-  const ctx = useContext(Context);
-
-  
+  const ctx = useContext(Context);  
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
+  
+  const user = useSelector(store => store.auth);
+
   const logout = () => {
-    debugger
-    dispatch(logoutActionCreator());
-    props.history.push('/login')
+
+    
+    dispatch(logoutAction());  
+    const aaa=  user.login.data;
+    
   }
 
   const toggle = () => {
@@ -58,19 +63,13 @@ const Header = (props) => {
             <NavItem>            
               <NavLink tag={RRNavLink} exact to="/register" activeClassName="active">Register</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className={user.login.data !== null ?'oculto':'visible'}>
               <NavLink tag={RRNavLink} exact to="/login" activeClassName="active">Login</NavLink>            
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>      
-                  <DropdownItem onClick={logout}>
-                    Cerrar Sesión
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+            <NavItem className={user.login.data === null ?'oculto':'visible'}>
+              <NavLink tag={RRNavLink} exact to="/login" activeClassName="active" onClick={logout}>Cerrar Sesión</NavLink>            
+            </NavItem>
+            
           </Nav>
          
           <Button outline onClick={ctx.toggleTheme}> Change Theme </Button>

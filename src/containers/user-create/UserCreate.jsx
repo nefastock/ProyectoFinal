@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveActionsAsyncCreator } from '../../store/modules/user/create.actions';
-import Spinner from '../../components/spinner/Spinner';
 
 import {
     Form,
@@ -9,7 +8,7 @@ import {
     Button,
     Label,
     Input,
-    Container, Row, Col, Card, CardHeader, CardFooter, CardBody, Alert } from 'reactstrap';
+    Container, Row, Col, Card, CardHeader, CardBody, Alert } from 'reactstrap';
 import './UserCreate.css';
 import useFormInput from '../../hooks/userInput';
 import makeInput from '../../utils/makeInput';
@@ -43,8 +42,8 @@ const UserCreate = () => {
 
     const validPassword = (input) => {
         if (input.type === 'password') {
-            const condition = input.value === input.value && input.value !== '';
-            return condition ? ({ valid: true}) : ({invalid: true});
+            const condition =  input.value === '';
+            return condition ? '' : '';
         }
         return '';
     };
@@ -57,14 +56,6 @@ const UserCreate = () => {
             pc: passwordConfirm.value,
         }
         return n === '' || e === '' || p === '' || pc === '' || p !== pc;
-    }
-
-    const onShowAlert = ()=>{
-        this.setState({visible:true},()=>{
-          window.setTimeout(()=>{
-            this.setState({visible:false})
-          },2000)
-        });
     }
 
     
