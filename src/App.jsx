@@ -48,15 +48,17 @@ toggleTheme = () => {
       <Provider store={store}>
         <Context.Provider value={this.state}>
           <Router>
-            <Header />            
+            <Header />     
+            <div className="mb-5">   
             <Switch>
               <Route path={routes.home} exact component={Home} />              
               <Route path={routes.login} exact component={Login} />
               <Route path={routes.register} exact component={UserCreate} /> 
+              <Route path={routes.postDetail} exact component={PostDetail} />
 
-              <PrivateRoute path={routes.privateHome} component={PrivateHome} />
-              <PrivateRoute path={routes.postDetail} exact component={PostDetail} />
-              <PrivateHome path={routes.privateHome} exact component={PrivateHome} /> 
+
+              <PrivateRoute path={routes.privateHome} component={PrivateHome} />              
+              
               
               <PrivateRoute path="/users" exact component={UserListView} />
               <PrivateRoute path="/users:id" exact component={UserDetailView} />
@@ -64,7 +66,7 @@ toggleTheme = () => {
               
               <Route component={NotFound} />
             </Switch>
-            
+            </div>    
             <Footer />
           </Router>
           

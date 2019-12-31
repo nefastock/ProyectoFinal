@@ -18,10 +18,10 @@ const PostDetail = (props) => {
     }, []);
 
     return (
-        <div className="text-center">
-            <h1>{post.id} | {post.title}</h1>
+        <div className="text-center container">
+            <h1>{post.title}</h1>
             <p>{post.description}</p>
-            <img width="100" src={post.image_url}/>
+            <img width="400" className="mb-4" src={post.image_url}/>
         </div>
     );
 };

@@ -28,13 +28,13 @@ const Home = (props) => {
     
 
     return (
-        <Container className="home">
+        <Container className="home mb-5">
             <h1>Actividades Cajón Maipo</h1>  
             <br/>
             
             <Row>
                 {dataMapper(posts.getAll.data.data).map(post => (
-                    <Col sm="6" key={post.id}>
+                    <Col sm="4" key={post.id}>
                         <Card>
                             <CardImg top width="20%" src={post.image_url} alt="Card image cap" />
                             <CardBody>

@@ -1,0 +1,13 @@
+.textoverflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tablelayout {
+    table-layout: fixed;
+}
+
+.inlineflex {
+    display: inline-flex;
+}

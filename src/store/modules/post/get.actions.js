@@ -4,7 +4,7 @@ import {
     POST_GET_ERROR,
 } from './const';
 
-import { getService } from '../../../services/POST.services';
+import { findPostById } from '../../../services/post.services';
 
 const startActionCreator = () => ({
     type: POST_GET_START,
@@ -25,7 +25,7 @@ export const getActionsAsyncCreator = (id) => {
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
-        getService(jwt, id).then(data => {
+        findPostById(jwt, id).then(data => {
             dispatch(successActionCreator(data.data));
         }).catch(err => {
             dispatch(errorActionCreator(err));
