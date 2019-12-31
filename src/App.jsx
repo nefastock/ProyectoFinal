@@ -17,7 +17,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 
 import UserListView from './containers/user-list/UserList';
-import UserDetailView from './containers/user-detail/UserDetail';
+import PostEdit from './containers/post-edit/PostEdit';
 import UserCreate from './containers/user-create/UserCreate';
 
 import routes from './routes';
@@ -61,7 +61,7 @@ toggleTheme = () => {
               
               
               <PrivateRoute path="/users" exact component={UserListView} />
-              <PrivateRoute path="/users:id" exact component={UserDetailView} />
+              <PrivateRoute path="/PostEdit/:id" exact component={PostEdit} />
               
               
               <Route component={NotFound} />

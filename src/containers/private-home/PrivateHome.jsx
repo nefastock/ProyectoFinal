@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector,  } from 'react-redux';
 import { Container, Table, Button,NavLink  } from 'reactstrap';
 import { getAllActionsAsyncCreator  } from '../../store/modules/post/get-all.actions';
 import { getActionsAsyncCreator  } from '../../store/modules/post/get.actions';
@@ -13,7 +13,7 @@ const dataMapper = d => d ? d : [];
 const Home = (props) => {
 
 
-    
+    const [idSelected, setIdSelected] = useState(0);
     const user = useSelector(store => store.auth.login);
     useEffect(() => {
         if (user.data !== null) {
@@ -37,13 +37,20 @@ const Home = (props) => {
         dispatch(getActionsAsyncCreator(id));
         toggle(props.history);
     }
-    const goUpdate = useEffect((id) => {
+    const goUpdtate = () => {
         
-    },[]);
+        console.log(idSelected);
+        
+        const vamos = (idSelected) => { 
+            props.history.push(`/user:${idSelected}`)
+        }
+        vamos();
+    }
+      
 
     return (
         <Container className="home">
-            <h1>Actividades Cajón Maipo</h1>  
+            <h1>Actividades en Cajón del Maipo</h1>  
             <br/>
             
             <Table  hover striped className="tablelayout">
@@ -63,7 +70,12 @@ const Home = (props) => {
                         <td className='textoverflow'>{post.description}</td>
                         <td className="inlineflex">                           
                             <ModalPostDetail className="" detailAction={detailAction} id={post.id} detalle={post.description} buttonLabel="Leer más..." className="" />
-                            <Button className="ml-1" color="secondary"  active>Editar</Button>
+                            <Button 
+                            onClick={()=> {                               
+                                
+                                props.history.push(`/PostEdit/${post.id}`)
+                                
+                            }}  className="ml-1" color="secondary"  active>Editar</Button>
                         </td>                        
                     </tr>
                 ))}

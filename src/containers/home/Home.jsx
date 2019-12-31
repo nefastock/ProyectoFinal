@@ -29,7 +29,7 @@ const Home = (props) => {
 
     return (
         <Container className="home mb-5">
-            <h1>Actividades Cajón Maipo</h1>  
+            <h1>Actividades en Cajón del Maipo</h1>  
             <br/>
             
             <Row>
