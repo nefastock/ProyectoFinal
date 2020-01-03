@@ -23,6 +23,15 @@ import PostCreate from './containers/post-create/PostCreate';
 import routes from './routes';
 import NotFound from './containers/not-found/NotFound';
 
+/**
+ * Componente basado en clase
+ * 
+ * @author Emmanuel Lepe <simon.lepe@gmail.com>
+ * @since 0.1.0
+ * @version 1.0.0 
+ * 
+ */
+
 class App extends Component {
 
   constructor(props) {
@@ -55,19 +64,14 @@ toggleTheme = () => {
               <Route path={routes.login} exact component={Login} />
               <Route path={routes.register} exact component={UserCreate} /> 
               <Route path={routes.postDetail} exact component={PostDetail} />
-
-
               <PrivateRoute path={routes.privateHome} component={PrivateHome} />   
-              <PrivateRoute path="/PostEdit/:id" exact component={PostEdit} />
-              <PrivateRoute path="/PostCreate" exact component={PostCreate} />
-              
-              
+              <PrivateRoute path={routes.privatePostEdit} exact component={PostEdit} />
+              <PrivateRoute path={routes.privatePostCreate} exact component={PostCreate} />  
               <Route component={NotFound} />
             </Switch>
             </div> 
             <Footer />
-          </Router>
-          
+          </Router>          
         </Context.Provider>
       </Provider>
     )

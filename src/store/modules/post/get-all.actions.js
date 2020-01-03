@@ -21,14 +21,13 @@ const errorActionCreator = (errorMessage) => ({
     payload: errorMessage,
 })
 
-export const getAllActionsAsyncCreator = () => {    
+export const getAllActionsAsyncCreator = () => {
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
         findAllPost(jwt).then(data => {
             dispatch(successActionCreator(data.data));
         }).catch(err => {
-            debugger
             dispatch(errorActionCreator(err));
         })
     }

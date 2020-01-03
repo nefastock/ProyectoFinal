@@ -4,7 +4,7 @@ import {
     POST_CREATE_ERROR,
 } from './const';
 
-import { saveService } from '../../../services/POST.services';
+import { savePost } from '../../../services/post.services';
 
 const startActionCreator = () => ({
     type: POST_CREATE_START,
@@ -25,7 +25,7 @@ export const saveActionsAsyncCreator = (data) => {
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
-        saveService(jwt, data).then(data => {
+        savePost(jwt, data).then(data => {
             dispatch(successActionCreator(data.data));
         }).catch(err => {
             dispatch(errorActionCreator(err));

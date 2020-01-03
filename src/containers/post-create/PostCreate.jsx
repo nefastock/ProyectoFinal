@@ -42,8 +42,14 @@ const PostDetail = (props) => {
         })
         
     }
-    const isDisabled = (t, d, i) => {
-        return t === '' || d === '' || i < 0 ;
+    const isValidForm = () => {
+        const { a, d, i } = {
+            a: actividad,
+            d: descripcion,
+            i: imagen           
+        }
+        debugger
+        return a !== '' && d !== '' && i !== '' ;
     }
 
     return (
@@ -64,7 +70,7 @@ const PostDetail = (props) => {
                     <Input name="imagen" type="text" value={imagen} onChange={(event) => { setImagen(event.target.value); }} />
                 </FormGroup>
                 <Button
-                        disabled={isDisabled(actividad, descripcion, imagen)}
+                        
                         onClick={(event) => {
                             event.preventDefault();
                             const post = {

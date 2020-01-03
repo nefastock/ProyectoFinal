@@ -15,6 +15,5 @@ describe('saveActionsAsyncCreator test', () => {
 
         result(dispatch, getStore)
 
-
     });
 });

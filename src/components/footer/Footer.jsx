@@ -2,6 +2,16 @@ import React, {useContext} from 'react';
 import Context from '../../Context';
 import './Footer.css';
 
+
+/**
+ * Componente basado en function
+ * 
+ * @author Emmanuel Lepe <simon.lepe@gmail.com>
+ * @since 0.1.0
+ * @version 1.0.0 
+ * 
+ */
+
 const Footer = () => {
 
     const ctx = useContext(Context);

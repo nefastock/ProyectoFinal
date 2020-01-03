@@ -12,7 +12,7 @@ import './PrivateHome.css';
 import { IoMdAdd } from "react-icons/io";
 
 
-const dataMapper = d => d ? d : [];
+
 
 
 const Home = (props) => {
@@ -26,11 +26,14 @@ const Home = (props) => {
     }, [user.data])
 
 
-    const posts = useSelector(store => store.post, []);
+    const posts = useSelector(store => store.post.getAll, []);
     const dispatch = useDispatch();
+    
 
     useEffect(() => {
+        
         dispatch(getAllActionsAsyncCreator());
+        
     }, []);   
 
     const detailAction = (data, id, toggle) => {
@@ -55,7 +58,7 @@ const Home = (props) => {
                         </tr>
                 </thead>
                 <tbody>
-                {dataMapper(posts.getAll.data.data).map(post => (
+                {posts.data.map(post => (
                     <tr key={post.id}>
                         <td >{post.id}</td>
                         <td>{post.title}</td>

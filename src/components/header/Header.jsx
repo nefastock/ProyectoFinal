@@ -14,10 +14,16 @@ import {
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { logoutActionsAsyncCreator as logoutAction } from '../../store/modules/auth/login.actions';
-
-
-
 import { getName } from '../../utils/getEnv';
+
+/**
+ * Componente basado en function
+ * 
+ * @author Emmanuel Lepe <simon.lepe@gmail.com>
+ * @since 0.1.0
+ * @version 1.0.0 
+ * 
+ */
 
 const Header = (props) => {
 
