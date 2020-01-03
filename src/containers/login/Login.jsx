@@ -24,7 +24,7 @@ const Login = (props) => {
     }, [user.data])
 
     const handlerLogin = () => {
-        debugger
+        
         user.error?setShowAlert(true):setShowAlert(false);
         dispatch(loginAction(email.value, password.value));        
 

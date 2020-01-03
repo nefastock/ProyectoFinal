@@ -8,7 +8,9 @@ export const findAllPost = () => {
     return axios(`${API_HOST}/${RESOURCE}`);
 };
 
-export const findPostById = (id) => {
+export const findPostById = (jwt = '', id) => {
+
+
     return axios(`${API_HOST}/${RESOURCE}/${id}`);
 };
 

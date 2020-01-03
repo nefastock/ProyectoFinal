@@ -16,9 +16,9 @@ import PostDetail from './containers/post-detail/PostDetail'
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 
-import UserListView from './containers/user-list/UserList';
 import PostEdit from './containers/post-edit/PostEdit';
 import UserCreate from './containers/user-create/UserCreate';
+import PostCreate from './containers/post-create/PostCreate';
 
 import routes from './routes';
 import NotFound from './containers/not-found/NotFound';
@@ -49,7 +49,7 @@ toggleTheme = () => {
         <Context.Provider value={this.state}>
           <Router>
             <Header />     
-            <div className="mb-5">   
+            <div className="margen">
             <Switch>
               <Route path={routes.home} exact component={Home} />              
               <Route path={routes.login} exact component={Login} />
@@ -57,16 +57,14 @@ toggleTheme = () => {
               <Route path={routes.postDetail} exact component={PostDetail} />
 
 
-              <PrivateRoute path={routes.privateHome} component={PrivateHome} />              
-              
-              
-              <PrivateRoute path="/users" exact component={UserListView} />
+              <PrivateRoute path={routes.privateHome} component={PrivateHome} />   
               <PrivateRoute path="/PostEdit/:id" exact component={PostEdit} />
+              <PrivateRoute path="/PostCreate" exact component={PostCreate} />
               
               
               <Route component={NotFound} />
             </Switch>
-            </div>    
+            </div> 
             <Footer />
           </Router>
           

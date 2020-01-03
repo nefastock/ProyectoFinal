@@ -15,12 +15,7 @@ const Register = (props) => {
 
     const buttonIsDisabled = () => password.value === '' || email.value === '' || name.value === '';
 
-    //useEffect(() => {
-    //   if (jwt !== null) {
-    //       props.history.push('dashboard/users')
-    //   }
-    //}, [jwt])
-
+   
     return (
         <Container className="mt-4">
             <Row>

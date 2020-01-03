@@ -8,7 +8,7 @@ const Footer = () => {
 
     return (
         <div  className={ctx.theme}>
-         <footer className="footer page-footer font-small blue pt-4 fixed-bottom">
+         <footer className="footer page-footer font-small blue pt-4 fixed-bottom mt-5">
             <div className="container-fluid text-center">
                 <div className="row">
                     <div className="col-md-12 ">

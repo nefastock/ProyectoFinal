@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect  } from 'react';
 import { useDispatch, useSelector,  } from 'react-redux';
-import { Container, Table, Button,NavLink  } from 'reactstrap';
+import { Container, Table, Button  } from 'reactstrap';
 import { getAllActionsAsyncCreator  } from '../../store/modules/post/get-all.actions';
 import { getActionsAsyncCreator  } from '../../store/modules/post/get.actions';
-import { Link } from 'react-router-dom';
+
+
+
 import ModalPostDetail from '../../components/modal-post-detail/ModalPostDetail';
 import './PrivateHome.css';
+
+import { IoMdAdd } from "react-icons/io";
+
 
 const dataMapper = d => d ? d : [];
 
 
 const Home = (props) => {
+    
 
-
-    const [idSelected, setIdSelected] = useState(0);
     const user = useSelector(store => store.auth.login);
     useEffect(() => {
         if (user.data !== null) {
@@ -27,25 +31,13 @@ const Home = (props) => {
 
     useEffect(() => {
         dispatch(getAllActionsAsyncCreator());
-    }, []);
-
-    const handlerToggleModify = (id) => {
-        
-    }
+    }, []);   
 
     const detailAction = (data, id, toggle) => {
-        dispatch(getActionsAsyncCreator(id));
+        dispatch(getActionsAsyncCreator('',id));
         toggle(props.history);
     }
-    const goUpdtate = () => {
-        
-        console.log(idSelected);
-        
-        const vamos = (idSelected) => { 
-            props.history.push(`/user:${idSelected}`)
-        }
-        vamos();
-    }
+    
       
 
     return (
@@ -79,8 +71,15 @@ const Home = (props) => {
                         </td>                        
                     </tr>
                 ))}
+                
                 </tbody>
+                
             </Table>
+            <Button className="mt-3" onClick={()=> {                               
+                                
+                                props.history.push(`/PostCreate`)
+                                
+                            }}><IoMdAdd />Agregar nueva actividad</Button>
             
         </Container>
     );

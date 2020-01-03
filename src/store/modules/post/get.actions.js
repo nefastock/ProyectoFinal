@@ -25,7 +25,9 @@ export const getActionsAsyncCreator = (id) => {
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
+
         findPostById(jwt, id).then(data => {
+
             dispatch(successActionCreator(data.data));
         }).catch(err => {
             dispatch(errorActionCreator(err));

@@ -6,15 +6,12 @@ const PostDetail = (props) => {
     const [post, setPost] = useState({});
 
     useEffect(() => {
-        findPostById(id).then((response) => {
+        findPostById('',id).then((response) => {
             const posts = response.data.data;
             setPost(posts);
         }).catch((err) => {
             debugger;
-        })
-       return () => {
-            // alert('Chao private');
-       } 
+        });      
     }, []);
 
     return (

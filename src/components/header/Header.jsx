@@ -11,10 +11,6 @@ import {
   NavItem,
   NavLink,
   Button,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { logoutActionsAsyncCreator as logoutAction } from '../../store/modules/auth/login.actions';
@@ -33,11 +29,8 @@ const Header = (props) => {
   const user = useSelector(store => store.auth);
 
   const logout = () => {
-
     
-    dispatch(logoutAction());  
-    const aaa=  user.login.data;
-    
+    dispatch(logoutAction());      
   }
 
   const toggle = () => {

@@ -4,7 +4,7 @@ import {
     POST_UPDATE_ERROR,
 } from './const';
 
-import { updateService } from '../../../services/POST.services';
+import { updatePost } from '../../../services/post.services';
 
 const startActionCreator = () => ({
     type: POST_UPDATE_START,
@@ -25,7 +25,7 @@ export const updateActionsAsyncCreator = (data, id) => {
     return (dispatch, getStore) => {
         dispatch(startActionCreator());
         const jwt = getStore().auth.login.data;
-        updateService(jwt, data, id).then(data => {
+        updatePost(jwt, data, id).then(data => {
             dispatch(successActionCreator(data.data));
         }).catch(err => {
             dispatch(errorActionCreator(err));
